@@ -39,7 +39,9 @@ class TelegramThemeView extends StatelessWidget {
             borderRadius: BorderRadius.circular(8),
             color: Colors.transparent,
             border: Border.all(
-              color: colorScheme.buttonTextColor ?? colorScheme.headerColor,
+              color: colorScheme.buttonTextColor ??
+                  colorScheme.headerColor ??
+                  Colors.transparent,
               width: 1,
             ),
           ),
@@ -47,11 +49,11 @@ class TelegramThemeView extends StatelessWidget {
             children: [
               ColorChip(
                 label: 'headerColor',
-                color: colorScheme.headerColor,
+                color: colorScheme.headerColor ?? Colors.transparent,
               ),
               ColorChip(
                 label: 'backgroundColor',
-                color: colorScheme.backgroundColor,
+                color: colorScheme.backgroundColor ?? Colors.transparent,
               ),
               if (colorScheme.textColor != null)
                 ColorChip(

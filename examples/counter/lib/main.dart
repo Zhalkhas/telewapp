@@ -72,7 +72,7 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             foregroundColor: telegramTheme.buttonTextColor,
             backgroundColor: telegramTheme.buttonColor,
-            child: Icon(Icons.add),
+            child: const Icon(Icons.add),
           ),
           appBar: AppBar(
             title: const Text('Counter'),

@@ -7,10 +7,10 @@ enum TelegramColorScheme {
   const TelegramColorScheme(this.value);
 
   factory TelegramColorScheme.fromString(
-    String colorScheme, {
+    String? colorScheme, {
     TelegramColorScheme Function()? orElse,
   }) =>
-      switch (colorScheme.toLowerCase()) {
+      switch (colorScheme?.toLowerCase()) {
         'light' => TelegramColorScheme.light,
         'dark' => TelegramColorScheme.dark,
         _ => orElse?.call() ?? TelegramColorScheme.light,

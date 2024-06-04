@@ -1,56 +1,26 @@
-import 'package:js/js.dart';
+import 'dart:js_interop';
 
-@JS()
-@anonymous
-@staticInterop
-class OnViewportChangedData {}
-
-extension OnViewportChangedDataX on OnViewportChangedData {
+extension type OnViewportChangedData(JSObject _) implements JSObject {
   external bool get isStateStable;
 }
 
-@JS()
-@anonymous
-@staticInterop
-class OnInvoiceClosedData {}
-
-extension OnInvoiceClosedDataX on OnInvoiceClosedData {
+extension type OnInvoiceClosedData(JSObject _) implements JSObject {
   external String get url;
   external String get status;
 }
 
-@JS()
-@anonymous
-@staticInterop
-class OnQrTextReceivedData {}
-
-extension OnQrTextReceivedDataX on OnQrTextReceivedData {
+extension type OnQrTextReceivedData(JSObject _) implements JSObject {
   external String get data;
 }
 
-@JS()
-@anonymous
-@staticInterop
-class OnClipboardTextReceivedData {}
-
-extension OnClipboardTextReceivedDataX on OnClipboardTextReceivedData {
+extension type OnClipboardTextReceivedData(JSObject _) implements JSObject {
   external String? get data;
 }
 
-@JS()
-@anonymous
-@staticInterop
-class OnWriteAccessRequestedData {}
-
-extension OnWriteAccessRequestedDataX on OnWriteAccessRequestedData {
+extension type OnWriteAccessRequestedData(JSObject _) implements JSObject {
   external String get status;
 }
 
-@JS()
-@anonymous
-@staticInterop
-class OnContactRequestedData {}
-
-extension OnContactRequestedDataX on OnContactRequestedData {
+extension type OnContactRequestedData(JSObject _) implements JSObject {
   external String get status;
 }

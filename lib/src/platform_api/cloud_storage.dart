@@ -1,10 +1,6 @@
-import 'package:js/js.dart';
+import 'dart:js_interop';
 
-@JS()
-@staticInterop
-class CloudStorage {}
-
-extension CloudStorageX on CloudStorage {
+extension type CloudStorage(JSObject _) implements JSObject{
   external void setItem(
     String key,
     String value, [

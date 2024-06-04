@@ -1,10 +1,6 @@
-import 'package:js/js.dart';
+import 'dart:js_interop';
 
-@JS()
-@staticInterop
-class HapticFeedback {}
-
-extension HapticFeedbackX on HapticFeedback {
+extension type HapticFeedback(JSObject _) implements JSObject {
   external void impactOccurred(String style);
   external void notificationOccurred(String type);
   external void selectionChanged();

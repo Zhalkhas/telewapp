@@ -9,26 +9,31 @@ class TeleWAppControllerImpl implements TeleWAppController {
   final TelegramWebApp telegramWebApp;
 
   @override
-  BackButtonConfig get backButtonConfig =>
-      BackButtonConfig(isVisible: telegramWebApp.backButton.isVisible);
+  BackButtonConfig get backButtonConfig => BackButtonConfig(
+      isVisible: telegramWebApp.backButton?.isVisible ?? false);
 
   @override
   set backButtonConfig(BackButtonConfig newConfig) {
-    if (telegramWebApp.backButton.isVisible != newConfig.isVisible) {
+    if (telegramWebApp.backButton?.isVisible != newConfig.isVisible) {
       newConfig.isVisible
-          ? telegramWebApp.backButton.hide()
-          : telegramWebApp.backButton.show();
+          ? telegramWebApp.backButton?.hide()
+          : telegramWebApp.backButton?.show();
     }
   }
 
   @override
   MainButtonConfig get mainButtonConfig => MainButtonConfig(
-        text: telegramWebApp.mainButton.text,
-        color: telegramWebApp.mainButton.color.toColor(),
-        textColor: telegramWebApp.mainButton.textColor.toColor(),
-        isVisible: telegramWebApp.mainButton.isVisible,
-        isActive: telegramWebApp.mainButton.isActive,
-        isProgressVisible: telegramWebApp.mainButton.isProgressVisible,
+        text: telegramWebApp.mainButton?.text ?? 'CONTINUE',
+        color: telegramWebApp.mainButton?.color.toColor() ??
+            telegramWebApp.themeParams?.buttonColor.toColor() ??
+            const Color(0x00FFFFFF),
+        textColor: telegramWebApp.mainButton?.textColor.toColor() ??
+            telegramWebApp.themeParams?.buttonTextColor.toColor() ??
+            const Color(0x00FFFFFF),
+        isVisible: telegramWebApp.mainButton?.isVisible ?? false,
+        isActive: telegramWebApp.mainButton?.isActive ?? true,
+        isProgressVisible:
+            telegramWebApp.mainButton?.isProgressVisible ?? false,
       );
 
   @override
@@ -38,29 +43,29 @@ class TeleWAppControllerImpl implements TeleWAppController {
       return;
     }
     if (config.text != newConfig.text) {
-      telegramWebApp.mainButton.setText(newConfig.text);
+      telegramWebApp.mainButton?.setText(newConfig.text);
     }
     if (config.color != newConfig.color) {
-      telegramWebApp.mainButton.color = newConfig.color.toTelegramColor();
+      telegramWebApp.mainButton?.color = newConfig.color.toTelegramColor();
     }
     if (config.textColor != newConfig.textColor) {
-      telegramWebApp.mainButton.textColor =
+      telegramWebApp.mainButton?.textColor =
           newConfig.textColor.toTelegramColor();
     }
     if (config.isVisible != newConfig.isVisible) {
       newConfig.isVisible
-          ? telegramWebApp.mainButton.show()
-          : telegramWebApp.mainButton.hide();
+          ? telegramWebApp.mainButton?.show()
+          : telegramWebApp.mainButton?.hide();
     }
     if (config.isActive != newConfig.isActive) {
       newConfig.isActive
-          ? telegramWebApp.mainButton.enable()
-          : telegramWebApp.mainButton.disable();
+          ? telegramWebApp.mainButton?.enable()
+          : telegramWebApp.mainButton?.disable();
     }
     if (config.isProgressVisible != newConfig.isProgressVisible) {
       newConfig.isProgressVisible
-          ? telegramWebApp.mainButton.showProgress()
-          : telegramWebApp.mainButton.hideProgress();
+          ? telegramWebApp.mainButton?.showProgress()
+          : telegramWebApp.mainButton?.hideProgress();
     }
   }
 
@@ -80,13 +85,13 @@ class TeleWAppControllerImpl implements TeleWAppController {
         colorScheme: TelegramColorScheme.fromString(telegramWebApp.colorScheme),
         backgroundColor: telegramWebApp.backgroundColor?.toColor(),
         headerColor: telegramWebApp.headerColor?.toColor(),
-        textColor: telegramWebApp.themeParams.textColor?.toColor(),
-        hintColor: telegramWebApp.themeParams.hintColor?.toColor(),
-        linkColor: telegramWebApp.themeParams.linkColor?.toColor(),
-        buttonColor: telegramWebApp.themeParams.buttonColor?.toColor(),
-        buttonTextColor: telegramWebApp.themeParams.buttonTextColor?.toColor(),
+        textColor: telegramWebApp.themeParams?.textColor.toColor(),
+        hintColor: telegramWebApp.themeParams?.hintColor.toColor(),
+        linkColor: telegramWebApp.themeParams?.linkColor.toColor(),
+        buttonColor: telegramWebApp.themeParams?.buttonColor.toColor(),
+        buttonTextColor: telegramWebApp.themeParams?.buttonTextColor.toColor(),
         secondaryBackgroundColor:
-            telegramWebApp.themeParams.secondaryBgColor?.toColor(),
+            telegramWebApp.themeParams?.secondaryBgColor.toColor(),
       );
 
   final _onThemeChangedController = StreamController<TelegramThemeData>();
@@ -115,14 +120,14 @@ class TeleWAppControllerImpl implements TeleWAppController {
               TelegramColorScheme.fromString(telegramWebApp.colorScheme),
           backgroundColor: telegramWebApp.backgroundColor?.toColor(),
           headerColor: telegramWebApp.headerColor?.toColor(),
-          textColor: telegramWebApp.themeParams.textColor?.toColor(),
-          hintColor: telegramWebApp.themeParams.hintColor?.toColor(),
-          linkColor: telegramWebApp.themeParams.linkColor?.toColor(),
-          buttonColor: telegramWebApp.themeParams.buttonColor?.toColor(),
+          textColor: telegramWebApp.themeParams?.textColor.toColor(),
+          hintColor: telegramWebApp.themeParams?.hintColor.toColor(),
+          linkColor: telegramWebApp.themeParams?.linkColor.toColor(),
+          buttonColor: telegramWebApp.themeParams?.buttonColor.toColor(),
           buttonTextColor:
-              telegramWebApp.themeParams.buttonTextColor?.toColor(),
+              telegramWebApp.themeParams?.buttonTextColor.toColor(),
           secondaryBackgroundColor:
-              telegramWebApp.themeParams.secondaryBgColor?.toColor(),
+              telegramWebApp.themeParams?.secondaryBgColor.toColor(),
         )),
       ),
     );
@@ -130,7 +135,7 @@ class TeleWAppControllerImpl implements TeleWAppController {
       '${WebAppEvent.viewportChanged}',
       allowInterop(
         (OnViewportChangedData data) => _onViewportHeightChangedController.add(
-          (telewapp.viewportHeight, data.isStateStable),
+          (telewapp.viewportHeight ?? 0, data.isStateStable),
         ),
       ),
     );

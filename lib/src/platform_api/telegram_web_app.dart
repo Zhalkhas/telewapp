@@ -79,9 +79,9 @@ extension TelegramWebAppX on TelegramWebApp {
 @anonymous
 class OpenLinkParams {
   @JS('try_instant_view')
-  external bool? get tryInstantView;
+  external bool get tryInstantView;
 
   external factory OpenLinkParams({
-    bool? tryInstantView,
+    bool tryInstantView,
   });
 }

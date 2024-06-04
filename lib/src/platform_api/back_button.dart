@@ -1,13 +1,9 @@
-import 'package:js/js.dart';
+import 'dart:js_interop';
 
-@JS()
-@staticInterop
-class BackButton {}
-
-extension BackButtonX on BackButton {
+extension type BackButton(JSObject _) implements JSObject {
   external bool get isVisible;
-  external void onClick(void Function() callback);
-  external void offClick(void Function() callback);
+  external void onClick(JSExportedDartFunction callback);
+  external void offClick(JSExportedDartFunction callback);
   external void show();
   external void hide();
 }
